@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PingVortex Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pv-favicon.png">
+    <meta name="description" content="PingVortex - Young Developer coding in Python, HTML, CSS, and Rust. Passionate about tech, AI, and coding. Explore my projects and skills.">
+    <meta name="keywords" content="PingVortex, Portfolio, Developer, Python, HTML, CSS, Rust, AI, Tech, Projects">
+    <meta name="author" content="PingVortex">
+
+    <style>
+        :root {
+            --primary: hsl(215, 100%, 40%);
+            --primary-dark: hsl(215, 100%, 30%);
+            --background: #121212;
+            --surface: #1e1e1e;
+            --text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--surface);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background-color: #222;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            font-size: 0.9rem;
+        }
+
+        .skill-item .fa-discord {
+            color: #5865F2;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .project {
+            background-color: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .project h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            align-self: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #show-more {
+            margin-top: 1rem;
+        }
+
+        .links-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .links-container a {
+            color: var(--text);
+            font-size: 2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .links-container a:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        footer {
+            background-color: var(--surface);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav {
+                display: none; /* Hide navbar on mobile */
+            }
+
+            section {
+                min-height: auto;
+                padding: 4rem 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .skills-list {
+                gap: 1rem;
+            }
+
+            .skill-item {
+                width: 80px;
+            }
+
+            .project {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PingVortex</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h1>PingVortex</h1>
+        <h2>Young Developer</h2>
+        <p>I'm Martin, known online as PingVortex. I enjoy coding in Python, HTML, and CSS, and I'm currently learning Rust. I run a Discord server and two websites, and I’m passionate about tech, AI, and experimenting with new projects. My future plans include training and deploying an advanced AI model and mastering JavaScript and advanced Rust.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-category">
+            <h3>Languages</h3>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <i class="devicon-python-plain colored"></i>
+                    <p>Python</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-rust-plain colored"></i>
+                    <p>Rust</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-html5-plain colored"></i>
+                    <p>HTML</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-css3-plain colored"></i>
+                    <p>CSS</p>
+                </div>
+            </div>
+        </div>
+        <div class="skills-category">
+            <h3>Tools</h3>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <i class="devicon-vscode-plain colored"></i>
+                    <p>VS Code</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-windows8-original colored"></i>
+                    <p>Windows</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-git-plain colored"></i>
+                    <p>Git</p>
+                </div>
+                <div class="skill-item">
+                    <i class="devicon-github-plain colored"></i>
+                    <p>GitHub</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-discord"></i>
+                    <p>Discord</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div id="projects-container" class="projects-container"></div>
+        <button id="show-more" class="btn">Show More</button>
+    </section>
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <a href="https://blog.pingvortex.xyz" target="_blank" class="btn">Go to Blog</a>
+    </section>
+
+    <section id="contact">
+        <h2>Contact & Links</h2>
+        <div class="links-container">
+            <a href="https://discord.gg/At3CcCqcR2" target="_blank" title="Join My Discord Community"><i class="fab fa-discord"></i></a>
+            <a href="https://github.com/pingvortex" target="_blank" title="Check Out My GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://youtube.com/@pingvortex" target="_blank" title="Subscribe on YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://huggingface.co/pingvortex" target="_blank" title="Check Out My Hugging Face"><i class="fa-solid fa-face-smiling-hands"></i></a>
+            <a href="https://www.tiktok.com/@pingvortex" target="_blank" title="Follow Me on TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.reddit.com/user/Realistic_Career_301/" target="_blank" title="Join Me on Reddit"><i class="fab fa-reddit"></i></a>
+            <a href="https://x.com/pingvortex" target="_blank" title="Follow Me on Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="contact-buttons">
+            <a href="mailto:contact@pingvortex.xyz" class="btn">Send Email</a>
+            <a href="https://buy.stripe.com/4gw8yK7U0bARcUM144" target="_blank" class="btn">Support Me</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 PingVortex. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.3 });
+            sections.forEach((section) => observer.observe(section));
+
+            fetch('https://api.github.com/users/PingVortex/repos')
+                .then(response => response.json())
+                .then(data => {
+                    const sortedRepos = data.sort((a, b) => b.stargazers_count - a.stargazers_count);
+                    let displayedCount = 0;
+                    const container = document.getElementById('projects-container');
+                    const showMoreBtn = document.getElementById('show-more');
+
+                    function renderRepos(start, count) {
+                        for (let i = start; i < start + count && i < sortedRepos.length; i++) {
+                            const repo = sortedRepos[i];
+                            const projectDiv = document.createElement('div');
+                            projectDiv.className = 'project';
+                            projectDiv.innerHTML = `
+                                <h3>${repo.name}</h3>
+                                <p>${repo.description || 'No description'}</p>
+                                <a href="${repo.html_url}" class="btn">View Project</a>
+                            `;
+                            container.appendChild(projectDiv);
+                        }
+                        displayedCount += count;
+                        if (displayedCount >= sortedRepos.length) {
+                            showMoreBtn.style.display = 'none';
+                        }
+                    }
+
+                    renderRepos(0, 5);
+
+                    showMoreBtn.addEventListener('click', () => {
+                        renderRepos(displayedCount, 5);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching repos:', error);
+                });
+        });
+    </script>
+</body>
+</html>
