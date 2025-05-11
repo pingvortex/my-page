@@ -34,6 +34,7 @@
             line-height: 1.6;
         }
 
+
         header {
             position: fixed;
             top: 0;
@@ -230,6 +231,23 @@
             align-items: center;
         }
 
+        html {
+            scroll-behavior: smooth;
+         }   
+
+        #show-more {
+            display: inline-block;
+            background-color: var(--primary);
+            border: none;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #show-more:hover {
+            background-color: var(--primary-dark);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -277,9 +295,37 @@
                 max-width: 300px;
             }
         }
+
+            #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+    .spinner {
+        border: 4px solid transparent;
+        border-top: 4px solid #48C9B0;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     </style>
 </head>
 <body>
+    <div id="loading-screen">
+    <div class="spinner"></div>
+</div>
     <header>
         <div class="logo">PingVortex</div>
         <nav>
@@ -296,7 +342,7 @@
     <section id="about">
         <h1>PingVortex</h1>
         <h2>Young Developer</h2>
-        <p>I'm Martin, known online as PingVortex. I enjoy coding in Python, HTML, and CSS, and I'm currently learning Rust. I run a Discord server and two websites, and I’m interested in tech, AI, and experimenting with new projects. My future plans include training and deploying an advanced AI model, mastering JavaScript and advanced Rust.</p>
+        <p>I'm Martin, known online as PingVortex. I enjoy coding in Python, HTML, and CSS, and I'm currently learning Rust. I run a Discord server and four websites, and I’m interested in tech, AI, and experimenting with new projects. My future plans include training and deploying an advanced AI model, mastering JavaScript and advanced Rust.</p>
     </section>
 
     <section id="skills">
@@ -320,6 +366,9 @@
                     <i class="devicon-css3-plain colored"></i>
                     <p>CSS</p>
                 </div>
+                <div class="skill-item">
+                    <i class="devicon-javascript-plain colored"></i>
+                    <p>JavaScript</p>
             </div>
         </div>
         <div class="skills-category">
@@ -345,6 +394,9 @@
                     <i class="fab fa-discord"></i>
                     <p>Discord</p>
                 </div>
+                <div class="skill-item">
+                    <i class="devicon-google-plain colored"></i>
+                    <p>Colab</p>
             </div>
         </div>
     </section>
@@ -354,6 +406,8 @@
         <div id="projects-container" class="projects-container"></div>
         <button id="show-more" class="btn">Show More</button>
     </section>
+
+
 
     <section id="blog">
         <h2>Blog</h2>
@@ -377,9 +431,9 @@
         </div>
     </section>
 
-    <footer>
-        <p>© 2025 PingVortex. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>© <span id="year"></span> PingVortex. All rights reserved.</p>
+</footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -421,16 +475,23 @@
                         }
                     }
 
-                    renderRepos(0, 5);
+                    renderRepos(0, 3);
 
                     showMoreBtn.addEventListener('click', () => {
-                        renderRepos(displayedCount, 5);
+                        renderRepos(displayedCount, 3);
                     });
                 })
                 .catch(error => {
                     console.error('Error fetching repos:', error);
                 });
         });
+
+
+            window.addEventListener('load', () => {
+        document.getElementById('loading-screen').style.display = 'none';
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
